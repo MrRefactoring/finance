@@ -11,20 +11,17 @@ class AppBar extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          height: Constants.appBar['height'],
-          color: Constants.appBar['color'],
+          height: Constants.appBar.height,
+          color: Constants.appBar.color,
           child: Center(
             child: Text(
-              this._title.toUpperCase(),
+              this._title,
               style: TextStyle(
-                color: Constants.appBar['textColor'],
+                fontSize: 20,
+                color: Constants.appBar.textColor,
               ),
             ),
           ),
-        ),
-        Container(
-          color: Constants.appBar['dividerColor'],
-          height: Constants.appBar['dividerHeight'],
         ),
       ],
     );
