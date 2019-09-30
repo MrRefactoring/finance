@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 
-const background = Color.fromARGB(255, 252, 252, 252);
+class Constants {
+  static final blue = Color.fromARGB(255, 65, 133, 244);
+  static final white = Colors.white;
 
-const green = Color.fromARGB(255, 13, 169, 78);
+  static final gradientBeginColor = Color.fromARGB(255, 153, 163, 254);
+  static final gradientEndColor = Color.fromARGB(255, 105, 117, 230);
 
-class appBar {
-  static final color = background;
-  static final textColor = Color.fromARGB(255, 0, 0, 20);
-  static final height = 60.0;
-}
+  static final background = Color.fromARGB(255, 252, 252, 252);
 
-class chart {
-  static final ringSize = 20;
-}
+  static final buttonTextStyle = TextStyle(color: Constants.white);
 
-class toggle {
-  static final enableColor = green;
-  static final disableColor = Color.fromARGB(255, 222, 227, 235);
-  static final borderRadius = 35.0;
-  static final textStyle = TextStyle(
+  static final balanceSubtitleStyles = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: Colors.white70,
+  );
+
+  static final balanceStyle = TextStyle(
+    fontSize: 48,
     color: Colors.white,
   );
+
+  static final fragmentViewTitleStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Color.fromARGB(255, 75, 83, 102),
+  );
+
+  static final dimmerColor = Color.fromARGB(127, 0, 0, 0);
 }

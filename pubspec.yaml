@@ -10,7 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  charts_flutter: ^0.8.0
+  shared_preferences: ^0.5.3+4
+  bezier_chart: ^1.0.14
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 flutter:
   uses-material-design: true

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:finance/src/constants.dart';
 import 'package:finance/src/containers/finances/finances.dart';
-import 'package:finance/src/constants.dart' as Constants;
 
 class Application extends StatelessWidget {
   Application() {
@@ -13,7 +13,6 @@ class Application extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Fedra',
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(

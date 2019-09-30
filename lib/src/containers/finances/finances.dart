@@ -1,83 +1,75 @@
-import 'package:finance/src/components/button/button.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:finance/src/components/appBar/appBar.dart' as appBar;
-import 'package:finance/src/components/picker/picker.dart';
-import 'package:finance/src/containers/finances/components/pieChart.dart';
-import 'package:finance/src/constants.dart' as Constants;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Finances extends StatelessWidget {
-  List<charts.Series<LinearSales, int>> _createSampleData() {
-    final data = [
-      LinearSales(0, 100),
-      LinearSales(1, 75),
-      LinearSales(2, 25),
-      LinearSales(3, 5),
-    ];
+import 'package:finance/src/components/button.dart';
+import 'package:finance/src/components/fragmentView.dart';
+import 'package:finance/src/components/loader.dart';
+import 'package:finance/src/containers/finances/components/balance.dart';
+import 'package:finance/src/containers/finances/components/transactionModal/transactionModal.dart';
+import 'package:finance/src/services/transactionService.dart';
 
-    return [
-      charts.Series<LinearSales, int>(
-        id: 'Sales',
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: data,
-      )
-    ];
+class Finances extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => FinancesState();
+}
+
+class FinancesState extends State<Finances> {
+  bool transactionModalIsOpen = false;
+  TransactionService transactionService;
+
+  @override
+  void initState() {
+    super.initState();
+
+    SharedPreferences.getInstance().then((prefs) {
+      this.setState(() {
+        this.transactionService = TransactionService(prefs);
+      });
+    });
+  }
+
+  toggleTransactionModal() {
+    this.setState(() {
+      this.transactionModalIsOpen = !this.transactionModalIsOpen;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final pieSize = size.width * 0.65;
+    if (this.transactionService == null) {
+      return Loader();
+    }
 
     return Stack(
-      fit: StackFit.expand,
       children: <Widget>[
         Column(
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            appBar.AppBar('Анализ финансов'),
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Text(
-                '23 456,00 ₽',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            Balance(this.transactionService.currentBalance),
+            FragmentView(
+              title: 'Transaction chart',
+              child: Text('data'),
             ),
-            PieChart(
-              size: pieSize,
-              data: this._createSampleData(),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Picker([
-                  'Расходы',
-                  'Зачисления',
-                ])
-              ],
+            FragmentView(
+              title: 'Overview',
+              child: Text('this is transaction history'),
             ),
           ],
         ),
         Positioned(
-          bottom: 15,
-          left: 20,
-          right: 20,
-          child: Center(
-            child: Button('Add transaction'),
+          left: 120,
+          right: 120,
+          bottom: 20,
+          child: Button(
+            text: 'Add transaction',
+            onClick: this.toggleTransactionModal,
           ),
-        )
+        ),
+        TransactionModal(
+          isOpen: this.transactionModalIsOpen,
+          closeModal: this.toggleTransactionModal,
+          transactionService: this.transactionService
+        ),
       ],
     );
   }
-}
-
-class LinearSales {
-  final int year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
 }
