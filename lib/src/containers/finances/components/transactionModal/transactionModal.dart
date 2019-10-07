@@ -1,3 +1,4 @@
+import 'package:finance/src/components/inputField.dart';
 import 'package:finance/src/containers/finances/components/transactionModal/dropdown.dart';
 import 'package:finance/src/models/transaction.dart';
 import 'package:finance/src/services/transactionService.dart';
@@ -11,7 +12,7 @@ class TransactionModal extends StatefulWidget {
 
   TransactionModal({
     this.isOpen = false,
-    this.closeModal,
+    @required this.closeModal,
     @required this.transactionService,
   });
 
@@ -26,9 +27,47 @@ class TransactionModalState extends State<TransactionModal> {
     this.transaction = Transaction();
   }
 
+  onChangeTitle(String title) {
+    this.setState(() {
+      this.transaction.title = title;
+    });
+  }
+
   onChangeTransactionCategory(String category) {
     this.setState(() {
       this.transaction.category = category;
+    });
+  }
+
+  onDescriptionChanged(String description) {
+    this.setState(() {
+      this.transaction.description = description;
+    });
+  }
+
+  onPriceChanged(String price) {
+    this.setState(() {
+      this.transaction.value = price;
+    });
+  }
+
+  selectDate() async {
+    final date = await showDatePicker(
+      context: this.context,
+      initialDate: DateTime.now(),
+      lastDate: DateTime.now(),
+      firstDate: DateTime(2016),
+    );
+
+    this.setState(() {
+      this.transaction.date = date;
+    });
+  }
+
+  addTransaction() {
+    this.setState(() {
+      this.widget.transactionService.addTransaction(this.transaction);
+      this.widget.closeModal();
     });
   }
 
@@ -52,11 +91,11 @@ class TransactionModalState extends State<TransactionModal> {
             title: Text('Add transaction'),
             children: <Widget>[
               SimpleDialogOption(
-                child: TextField(
+                child: InputField(
+                  value: this.transaction.title,
                   autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: 'Title'
-                  ),
+                  decoration: InputDecoration(hintText: 'Title'),
+                  onChange: this.onChangeTitle,
                 ),
               ),
               SimpleDialogOption(
@@ -69,19 +108,33 @@ class TransactionModalState extends State<TransactionModal> {
               ),
               SimpleDialogOption(
                 child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Description'
-                  ),
+                  onTap: this.selectDate,
+                  controller: TextEditingController(), // TODO put date here
                 ),
               ),
-               SimpleDialogOption(
-                child: TextField(
+              SimpleDialogOption(
+                child: InputField(
+                  value: this.transaction.value,
                   keyboardType: TextInputType.number,
+                  decoration: InputDecoration(hintText: 'Price'),
+                  onChange: this.onPriceChanged,
+                ),
+              ),
+              SimpleDialogOption(
+                child: InputField(
+                  value: this.transaction.description,
+                  onChange: this.onDescriptionChanged,
                   decoration: InputDecoration(
-                    hintText: 'Coast'
+                    hintText: 'Description',
                   ),
                 ),
               ),
+              SimpleDialogOption(
+                child: RaisedButton(
+                  onPressed: this.addTransaction,
+                  child: Text('Add'),
+                ),
+              )
             ],
           ),
         ),

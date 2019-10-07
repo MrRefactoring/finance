@@ -22,7 +22,10 @@ class TransactionService {
       return 0;
     }
 
-    return this._transactions.last.balanceAfterTransaction;
+    return this
+        ._transactions
+        .map((transaction) => double.parse(transaction.value))
+        .reduce((acc, current) => acc + current);
   }
 
   // TODO transaction info

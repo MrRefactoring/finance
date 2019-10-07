@@ -66,7 +66,7 @@ class FinancesState extends State<Finances> {
         ),
         TransactionModal(
           isOpen: this.transactionModalIsOpen,
-          closeModal: this.toggleTransactionModal,
+          closeModal: () => this.toggleTransactionModal(),
           transactionService: this.transactionService
         ),
       ],
