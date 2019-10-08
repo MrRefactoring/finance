@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class PriceValidator extends TextInputFormatter {
-  final Pattern pattern = RegExp(r'^-?\d+(\.\d{1,2})?$|^-?\d+\.|-$'); // TODO 123.123 clean string
+  final Pattern pattern = RegExp(r'^-?\d+(\.\d{1,2})?$|^-?\d+\.$|-$'); // TODO 123.123 clean string
 
   @override
   TextEditingValue formatEditUpdate(

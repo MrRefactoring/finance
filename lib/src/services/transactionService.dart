@@ -4,11 +4,11 @@ import 'package:finance/src/models/transaction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TransactionService {
-  SharedPreferences _prefs;
+  SharedPreferences _preferences;
   List<Transaction> _transactions;
 
-  TransactionService(this._prefs) {
-    final transactions = this._prefs.getString('transactions');
+  TransactionService(this._preferences) {
+    final transactions = this._preferences.getString('transactions');
 
     if (transactions == null) {
       this._transactions = [];
@@ -28,7 +28,6 @@ class TransactionService {
         .reduce((acc, current) => acc + current);
   }
 
-  // TODO transaction info
   void addTransaction(Transaction transaction) {
     this._transactions.add(transaction);
     this._updateStorage();
@@ -46,6 +45,6 @@ class TransactionService {
   }
 
   void _updateStorage() {
-    this._prefs.setString('transactions', json.encode(this._transactions));
+    this._preferences.setString('transactions', json.encode(this._transactions));
   }
 }
