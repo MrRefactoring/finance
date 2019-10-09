@@ -47,7 +47,7 @@ class TransactionModalState extends State<TransactionModal> {
 
   onPriceChanged(String price) {
     this.setState(() {
-      this.transaction.value = price;
+      this.transaction.price = price;
     });
   }
 
@@ -78,8 +78,8 @@ class TransactionModalState extends State<TransactionModal> {
       return Container();
     }
 
-    final availableCategories =
-        this.widget.transactionService.getAvailableCategories();
+    final availableCategories = [];
+    // this.widget.transactionService.getAvailableCategories();
 
     return GestureDetector(
       onTap: this.widget.closeModal,
@@ -114,7 +114,7 @@ class TransactionModalState extends State<TransactionModal> {
               ),
               SimpleDialogOption(
                 child: InputField(
-                  value: this.transaction.value,
+                  value: this.transaction.price,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(hintText: 'Price'),
                   onChange: this.onPriceChanged,

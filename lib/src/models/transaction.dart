@@ -2,6 +2,6 @@ class Transaction {
   DateTime date;
   String title;
   String description;
-  String value;
+  String price;
   String category;
 }

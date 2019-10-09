@@ -5,7 +5,7 @@ import 'package:finance/src/containers/finances/finances.dart';
 
 class Application extends StatelessWidget {
   Application() {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   @override

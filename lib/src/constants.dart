@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Constants {
+  static final storages = _Storages();
+
   static final blue = Color.fromARGB(255, 65, 133, 244);
   static final white = Colors.white;
 
@@ -29,4 +31,9 @@ class Constants {
   );
 
   static final dimmerColor = Color.fromARGB(127, 0, 0, 0);
+}
+
+class _Storages {
+  final transactions = 'transactions';
+  final categories = 'categories';
 }
