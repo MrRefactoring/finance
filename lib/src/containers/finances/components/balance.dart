@@ -25,6 +25,21 @@ class BalanceState extends State<Balance> {
     });
   }
 
+  @override
+  void didUpdateWidget(Balance oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    
+    this.setState(() {
+      this.balance = null;
+    });
+
+    this.widget.balance.then((balance) {
+      this.setState(() {
+        this.balance = balance;
+      });
+    });
+  }
+
   renderBalance() {
     return [
       Text(

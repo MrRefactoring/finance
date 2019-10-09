@@ -5,6 +5,21 @@ class Constants {
   static final styles = _Styles();
   static final texts = _Texts();
 
+  static final months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'Jule',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December',
+  };
+
   static final blue = Color.fromARGB(255, 65, 133, 244);
   static final white = Colors.white;
 
@@ -31,6 +46,11 @@ class _Storages {
 
 class _Styles {
   final texts = _TextStyles();
+
+  final modalTextField = (String label) => InputDecoration(
+        labelText: label,
+        contentPadding: EdgeInsets.only(bottom: 8),
+      );
 }
 
 class _TextStyles {

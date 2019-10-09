@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:finance/src/constants.dart';
 import 'package:finance/src/models/transaction.dart';
+import 'package:finance/src/models/transactions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TransactionService {
@@ -19,7 +20,7 @@ class TransactionService {
 
     transactions.add(transaction);
 
-    this._currentBalance += double.parse(transaction.price);
+    this._currentBalance = await this.balance + double.parse(transaction.price);
     this._updateStorage();
   }
 
@@ -58,7 +59,7 @@ class TransactionService {
     final preferences = await this._preferences;
     final transactions = preferences.getString(Constants.storages.transactions);
 
-    this._transactions = transactions != null ? json.decode(transactions) : [];
+    this._transactions = transactions != null ? Transactions.fromJson(jsonDecode(transactions)) : [];
 
     return this._transactions;
   }
@@ -71,16 +72,25 @@ class TransactionService {
     final preferences = await this._preferences;
     final categories = preferences.getString(Constants.storages.categories);
 
-    this._categories = categories != null
-        ? json.decode(categories)
-        : [
-            'Restaurants and Cafes',
-            'Supermarkets',
-            'Communal payments',
-            'Transport',
-            'Health and beauty',
-            'Other',
-          ];
+    // this._categories = categories != null
+    //     ? jsonDecode(categories)
+    //     : [
+    //         'Restaurants and Cafes',
+    //         'Supermarkets',
+    //         'Communal payments',
+    //         'Transport',
+    //         'Health and beauty',
+    //         'Other',
+    //       ];
+
+    this._categories = [
+      'Restaurants and Cafes',
+      'Supermarkets',
+      'Communal payments',
+      'Transport',
+      'Health and beauty',
+      'Other',
+    ];
 
     return this._categories;
   }
@@ -88,14 +98,18 @@ class TransactionService {
   Future<void> _updateStorage() async {
     final preferencies = await this._preferences;
 
-    preferencies.setString(
-      Constants.storages.transactions,
-      json.encode(this._transactions),
-    );
+    if (this.transactions != null) {
+      preferencies.setString(
+        Constants.storages.transactions,
+        jsonEncode(this._transactions),
+      );
+    }
 
-    preferencies.setString(
-      Constants.storages.categories,
-      json.encode(this._categories),
-    );
+    if (this._categories != null) {
+      preferencies.setString(
+        Constants.storages.categories,
+        jsonEncode(this._categories),
+      );
+    }
   }
 }

@@ -1,9 +1,9 @@
-import 'package:finance/src/containers/finances/components/balance.dart';
-import 'package:finance/src/containers/finances/components/transactionModal.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance/src/components/button.dart';
+import 'package:finance/src/services/transactionModal.dart';
 import 'package:finance/src/services/transactionService.dart';
+import 'package:finance/src/containers/finances/components/balance.dart';
 
 class Finances extends StatefulWidget {
   @override
@@ -29,14 +29,22 @@ class FinancesState extends State<Finances> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
+  showDialog() async {
     final dialog = TransactionModal(
       context: context,
       categories: this.transactionService.categories,
       addTransaction: this.transactionService.addTransaction,
     );
 
+    await dialog.show();
+
+    this.setState(() {
+      this.transactionService = transactionService;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Column(
@@ -50,7 +58,7 @@ class FinancesState extends State<Finances> {
           bottom: 20,
           child: Button(
             text: 'Add transaction',
-            onClick: dialog.show,
+            onClick: showDialog,
           ),
         ),
       ],
