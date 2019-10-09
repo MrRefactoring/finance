@@ -99,12 +99,12 @@ class TransactionModalState extends State<TransactionModal> {
                 ),
               ),
               SimpleDialogOption(
-                child: DropDown(
-                  value: this.transaction.category,
-                  items: availableCategories,
-                  onChange: this.onChangeTransactionCategory,
-                  placeholder: 'Category',
-                ),
+                // child: DropDown(
+                //   value: this.transaction.category,
+                //   items: availableCategories,
+                //   onChange: this.onChangeTransactionCategory,
+                //   placeholder: 'Category',
+                // ),
               ),
               SimpleDialogOption(
                 child: TextField(

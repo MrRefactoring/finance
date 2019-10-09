@@ -24,7 +24,7 @@ class TransactionService {
   }
 
   Future<void> addTransactionCategory(String category) async {
-    final categories = await this.transactionCategories;
+    final categories = await this.categories;
 
     categories.add(category);
 
@@ -63,7 +63,7 @@ class TransactionService {
     return this._transactions;
   }
 
-  Future<List<String>> get transactionCategories async {
+  Future<List<String>> get categories async {
     if (this._categories != null) {
       return this._categories;
     }

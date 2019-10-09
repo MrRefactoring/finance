@@ -33,7 +33,7 @@ class BalanceState extends State<Balance> {
       ),
       Text(
         '\$ ${this.balance}',
-        style: Constants.balanceStyle,
+        style: Constants.styles.texts.balance,
       ),
     ];
   }

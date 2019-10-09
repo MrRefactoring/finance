@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class Constants {
   static final storages = _Storages();
+  static final styles = _Styles();
+  static final texts = _Texts();
 
   static final blue = Color.fromARGB(255, 65, 133, 244);
   static final white = Colors.white;
@@ -19,21 +21,25 @@ class Constants {
     color: Colors.white70,
   );
 
-  static final balanceStyle = TextStyle(
-    fontSize: 48,
-    color: Colors.white,
-  );
-
-  static final fragmentViewTitleStyle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: Color.fromARGB(255, 75, 83, 102),
-  );
-
   static final dimmerColor = Color.fromARGB(127, 0, 0, 0);
 }
 
 class _Storages {
   final transactions = 'transactions';
   final categories = 'categories';
+}
+
+class _Styles {
+  final texts = _TextStyles();
+}
+
+class _TextStyles {
+  final balance = TextStyle(
+    fontSize: 48,
+    color: Colors.white,
+  );
+}
+
+class _Texts {
+  final addTransaction = 'Add transaction';
 }
