@@ -101,6 +101,6 @@ class _DialogBodyState extends State<_DialogBody> {
           onChange: this.changeCategory,
         )
       ],
-    );;
+    );
   }
 }
