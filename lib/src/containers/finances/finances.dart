@@ -1,3 +1,7 @@
+import 'package:bezier_chart/bezier_chart.dart';
+import 'package:finance/src/constants.dart';
+import 'package:finance/src/containers/finances/components/chart.dart';
+import 'package:finance/src/containers/finances/components/history.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance/src/components/button.dart';
@@ -45,11 +49,36 @@ class FinancesState extends State<Finances> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Stack(
       children: <Widget>[
         Column(
           children: <Widget>[
-            Balance(this.transactionService.balance),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Balance(this.transactionService.balance),
+                    Container(
+                      transform: Matrix4.translationValues(0.0, -30.0, 0.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [BoxShadow()],
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                      ),
+                      height: width * 0.6,
+                      width: width * 0.9,
+                      child: Chart(this.transactionService.last()),
+                    ),
+                    Container(
+                      width: width * 0.9,
+                      child: History(this.transactionService.transactions),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
         Positioned(

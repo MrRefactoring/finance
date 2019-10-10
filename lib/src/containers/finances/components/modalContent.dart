@@ -1,3 +1,4 @@
+import 'package:finance/src/helpers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance/src/constants.dart';
@@ -60,16 +61,6 @@ class _ModalContentState extends State<ModalContent> {
     this.changeDate(date);
   }
 
-  buildDateText() {
-    final date = this.widget.transaction.date;
-
-    if (date == null) {
-      return '';
-    }
-
-    return '${Constants.months[date.month]} ${date.day}, ${date.year}';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -89,7 +80,7 @@ class _ModalContentState extends State<ModalContent> {
                 onChange: this.changeDescription,
               ),
               TextField(
-                controller: TextEditingController(text: buildDateText()),
+                controller: TextEditingController(text: buildDateText(this.widget.transaction.date)),
                 decoration: Constants.styles.modalTextField('Date'),
                 onTap: () => this.showPicker(context),
               ),

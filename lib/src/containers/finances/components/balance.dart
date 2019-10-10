@@ -61,11 +61,11 @@ class BalanceState extends State<Balance> {
 
     return Container(
       width: size.width,
-      height: 200,
+      height: 210,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
           colors: [Constants.gradientBeginColor, Constants.gradientEndColor],
         ),
       ),

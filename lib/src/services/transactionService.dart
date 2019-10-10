@@ -33,6 +33,19 @@ class TransactionService {
     this._updateStorage();
   }
 
+  Future<List<Transaction>> last({
+    Duration duration = const Duration(days: 30),
+  }) async {
+    final today = DateTime.now();
+    final startDate = today.subtract(duration);
+
+    final transactions = await this.transactions;
+
+    return transactions
+        .where((transaction) => transaction.date.compareTo(startDate) == 1)
+        .toList();
+  }
+
   Future<double> get balance async {
     if (this._currentBalance != null) {
       return this._currentBalance;
@@ -59,7 +72,9 @@ class TransactionService {
     final preferences = await this._preferences;
     final transactions = preferences.getString(Constants.storages.transactions);
 
-    this._transactions = transactions != null ? Transactions.fromJson(jsonDecode(transactions)) : [];
+    this._transactions = transactions != null
+        ? Transactions.fromJson(jsonDecode(transactions))
+        : [];
 
     return this._transactions;
   }

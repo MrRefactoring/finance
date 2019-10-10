@@ -20,15 +20,15 @@ class Constants {
     12: 'December',
   };
 
-  static final blue = Color.fromARGB(255, 65, 133, 244);
+  static final blue = Color.fromARGB(255, 73, 147, 236);
   static final white = Colors.white;
 
-  static final gradientBeginColor = Color.fromARGB(255, 153, 163, 254);
-  static final gradientEndColor = Color.fromARGB(255, 105, 117, 230);
+  static final gradientBeginColor = Color.fromARGB(255, 94, 163, 238);
+  static final gradientEndColor = Color.fromARGB(255, 49, 99, 186);
 
   static final background = Color.fromARGB(255, 252, 252, 252);
 
-  static final buttonTextStyle = TextStyle(color: Constants.white);
+  static final buttonTextStyle = TextStyle(color: Constants.white, fontWeight: FontWeight.normal);
 
   static final balanceSubtitleStyles = TextStyle(
     fontSize: 14,
