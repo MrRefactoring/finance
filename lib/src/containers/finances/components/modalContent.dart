@@ -62,7 +62,7 @@ class _ModalContentState extends State<ModalContent> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       Flexible(
         child: SingleChildScrollView(

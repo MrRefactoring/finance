@@ -34,7 +34,7 @@ class _ChartState extends State<Chart> {
       this.transactions = null;
     });
 
-     this.widget.transactions.then((transactions) {
+    this.widget.transactions.then((transactions) {
       this.setState(() {
         this.transactions = transactions;
       });
