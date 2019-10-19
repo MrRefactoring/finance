@@ -1,16 +1,12 @@
-# finance
+# Finance
 
-A new Flutter project.
+Laboratory work on the development of mobile applications
 
-## Getting Started
+# Prepare
 
-This project is a starting point for a Flutter application.
+Before you begin, you must install [flutter](https://flutter.dev/docs/get-started/install)
 
-A few resources to get you started if this is your first Flutter project:
+# Usage
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Run the emulator or connect your device in debug mode via USB
+- Type `flutter run` in terminal
