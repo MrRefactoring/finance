@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:finance/src/constants.dart';
+import 'package:finance/src/models/categories.dart';
 import 'package:finance/src/models/transaction.dart';
 import 'package:finance/src/models/transactions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,9 +73,13 @@ class TransactionService {
     final preferences = await this._preferences;
     final transactions = preferences.getString(Constants.storages.transactions);
 
-    this._transactions = transactions != null
-        ? Transactions.fromJson(jsonDecode(transactions))
-        : [];
+    try {
+      this._transactions = transactions != null
+          ? Transactions.fromJson(jsonDecode(transactions))
+          : [];
+    } catch (e) {
+      this._transactions = [];
+    }
 
     return this._transactions;
   }
@@ -87,25 +92,18 @@ class TransactionService {
     final preferences = await this._preferences;
     final categories = preferences.getString(Constants.storages.categories);
 
-    // this._categories = categories != null
-    //     ? jsonDecode(categories)
-    //     : [
-    //         'Restaurants and Cafes',
-    //         'Supermarkets',
-    //         'Communal payments',
-    //         'Transport',
-    //         'Health and beauty',
-    //         'Other',
-    //       ];
-
-    this._categories = [
-      'Restaurants and Cafes',
-      'Supermarkets',
-      'Communal payments',
-      'Transport',
-      'Health and beauty',
-      'Other',
-    ];
+    try {
+      this._categories = Categories.fromJson(jsonDecode(categories));
+    } catch (e) {
+      this._categories = [
+        'Restaurants and Cafes',
+        'Supermarkets',
+        'Communal payments',
+        'Transport',
+        'Health and beauty',
+        'Other',
+      ];
+    }
 
     return this._categories;
   }

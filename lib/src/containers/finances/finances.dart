@@ -1,13 +1,11 @@
-import 'package:bezier_chart/bezier_chart.dart';
-import 'package:finance/src/components/inputField.dart';
-import 'package:finance/src/constants.dart';
-import 'package:finance/src/containers/finances/components/chart.dart';
-import 'package:finance/src/containers/finances/components/history.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance/src/components/button.dart';
+import 'package:finance/src/components/inputField.dart';
 import 'package:finance/src/services/transactionModal.dart';
 import 'package:finance/src/services/transactionService.dart';
+import 'package:finance/src/containers/finances/components/chart.dart';
+import 'package:finance/src/containers/finances/components/history.dart';
 import 'package:finance/src/containers/finances/components/balance.dart';
 
 class Finances extends StatefulWidget {

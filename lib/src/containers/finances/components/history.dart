@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:finance/src/components/loader.dart';
 import 'package:finance/src/containers/finances/components/transactionWidget.dart';
 import 'package:finance/src/models/transaction.dart';
-import 'package:flutter/material.dart';
 
 class History extends StatefulWidget {
   final Future<List<Transaction>> transactions;
