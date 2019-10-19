@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:finance/src/components/loader.dart';
 import 'package:finance/src/constants.dart';
-import 'package:flutter/material.dart';
 
 class Balance extends StatefulWidget {
   final Future<double> balance;
@@ -47,7 +48,7 @@ class BalanceState extends State<Balance> {
         style: Constants.balanceSubtitleStyles,
       ),
       Text(
-        '\$ ${this.balance}',
+        '\$ ${this.balance.toStringAsFixed(2)}',
         style: Constants.styles.texts.balance,
       ),
     ];

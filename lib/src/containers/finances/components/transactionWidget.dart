@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:finance/src/helpers.dart';
 import 'package:finance/src/models/transaction.dart';
-import 'package:flutter/material.dart';
 
 class TransactionWidget extends StatelessWidget {
   final Transaction transaction;

@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:bezier_chart/bezier_chart.dart';
+
 import 'package:finance/src/components/loader.dart';
 import 'package:finance/src/models/transaction.dart';
-import 'package:flutter/material.dart';
 
 class Chart extends StatefulWidget {
   final Future<List<Transaction>> transactions;

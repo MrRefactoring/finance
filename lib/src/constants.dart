@@ -28,7 +28,8 @@ class Constants {
 
   static final background = Color.fromARGB(255, 252, 252, 252);
 
-  static final buttonTextStyle = TextStyle(color: Constants.white, fontWeight: FontWeight.normal);
+  static final buttonTextStyle =
+      TextStyle(color: Constants.white, fontWeight: FontWeight.normal);
 
   static final balanceSubtitleStyles = TextStyle(
     fontSize: 14,
