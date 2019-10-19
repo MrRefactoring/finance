@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(20),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),
@@ -23,14 +23,6 @@ class Button extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            Icons.add,
-            size: 16,
-            color: Constants.white,
-          ),
-          Container(
-            width: 16,
-          ),
           Text(
             this.text,
             style: Constants.buttonTextStyle,

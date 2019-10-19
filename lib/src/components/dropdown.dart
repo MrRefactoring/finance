@@ -16,7 +16,7 @@ class DropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
-      isExpanded: false,
+      isExpanded: true,
       value: this.value,
       items: this
           .items
